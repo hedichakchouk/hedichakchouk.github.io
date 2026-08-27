@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hedi Chakchouk | Mobile Developer (Flutter &amp; iOS)</title>
+<meta name="description" content="Hedi Chakchouk — Mobile Developer specializing in Flutter, Dart and cross-platform app development.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0D1218;
+    --panel:#141B24;
+    --panel-2:#1A2330;
+    --line:#243040;
+    --text:#E9EDF2;
+    --text-dim:#93A0B1;
+    --text-faint:#5C6675;
+    --teal:#4FC1B0;
+    --teal-soft:rgba(79,193,176,.13);
+    --amber:#F0A83C;
+    --disp:'Space Grotesk',sans-serif;
+    --body:'Inter',sans-serif;
+    --mono:'JetBrains Mono',monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation:none !important; transition:none !important;} }
+  body{background:var(--bg); color:var(--text); font-family:var(--body); line-height:1.6; -webkit-font-smoothing:antialiased;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  img{max-width:100%; display:block;}
+  h1,h2,h3,h4{font-family:var(--disp); font-weight:600; letter-spacing:-.01em; color:var(--text);}
+  .wrap{max-width:1140px; margin:0 auto; padding:0 28px;}
+  ::selection{background:var(--teal); color:#0D1218;}
+  :focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
+  section{padding:88px 0;}
+  .divider{border:none; border-top:1px solid var(--line);}
+
+  /* ---- nav ---- */
+  .nav{position:sticky; top:0; z-index:60; background:rgba(13,18,24,.88); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:1140px; margin:0 auto; padding:0 28px; height:68px; display:flex; align-items:center; justify-content:space-between;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:var(--disp); font-weight:700; font-size:17px;}
+  .logo-mark{width:34px; height:34px; border-radius:9px; background:linear-gradient(135deg,var(--teal),#2E8F82); display:flex; align-items:center; justify-content:center; font-size:14px; color:#0D1218; font-weight:700;}
+  .nav-links{display:flex; align-items:center; gap:30px; font-size:14.5px; color:var(--text-dim);}
+  .nav-links a{transition:color .2s;}
+  .nav-links a:hover{color:var(--teal);}
+  .nav-actions{display:flex; align-items:center; gap:14px;}
+  .btn{font-family:var(--body); font-weight:600; font-size:14px; padding:11px 22px; border-radius:9px; display:inline-flex; align-items:center; gap:8px; transition:transform .15s, box-shadow .15s, border-color .15s, background .15s; white-space:nowrap;}
+  .btn-primary{background:var(--teal); color:#0D1218;}
+  .btn-primary:hover{transform:translateY(-1px); box-shadow:0 8px 22px -8px rgba(79,193,176,.5);}
+  .btn-ghost{border:1px solid var(--line); color:var(--text);}
+  .btn-ghost:hover{border-color:var(--text-dim);}
+  .btn-sm{padding:8px 16px; font-size:13px;}
+  @media (max-width:860px){ .nav-links{display:none;} }
+
+  /* ---- hero ---- */
+  .hero{padding:90px 0 60px;}
+  .available-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:12.5px; color:var(--teal);
+    background:var(--teal-soft); border:1px solid rgba(79,193,176,.3);
+    border-radius:100px; padding:6px 14px; margin-bottom:26px;
+  }
+  .available-badge i{width:7px; height:7px; border-radius:50%; background:var(--teal); animation:pulse 2.2s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(79,193,176,.5);} 50%{box-shadow:0 0 0 5px rgba(79,193,176,0);}}
+  .hero h1{font-size:clamp(2.1rem,5vw,3.6rem); line-height:1.08; max-width:16ch; margin-bottom:22px;}
+  .hero h1 .accent{color:var(--teal);}
+  .hero p.lede{font-size:17.5px; color:var(--text-dim); max-width:60ch; margin-bottom:34px;}
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:64px;}
+
+  .stats-row{display:grid; grid-template-columns:repeat(4,1fr); gap:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .stat{padding:26px 8px; text-align:center; border-right:1px solid var(--line);}
+  .stat:last-child{border-right:none;}
+  .stat .num{font-family:var(--disp); font-size:clamp(1.5rem,3vw,2.1rem); font-weight:700; color:var(--teal);}
+  .stat .label{font-family:var(--mono); font-size:11px; letter-spacing:.05em; color:var(--text-faint); text-transform:uppercase; margin-top:4px;}
+  @media (max-width:640px){ .stats-row{grid-template-columns:repeat(2,1fr);} .stat{border-bottom:1px solid var(--line);} .stat:nth-child(2){border-right:none;} }
+
+  /* ---- section head ---- */
+  .section-tag{font-family:var(--mono); font-size:12.5px; color:var(--teal); letter-spacing:.08em; text-transform:uppercase; margin-bottom:12px;}
+  .section-head h2{font-size:clamp(1.6rem,3.4vw,2.3rem); margin-bottom:10px;}
+  .section-head p{color:var(--text-dim); max-width:56ch; font-size:15.5px;}
+  .section-head{margin-bottom:48px; text-align:center;}
+  .section-head.left{text-align:left;}
+
+  /* ---- about ---- */
+  .about-grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:56px; align-items:center;}
+  .about-photo{
+    aspect-ratio:1/1; border-radius:20px; border:1px solid var(--line);
+    background:linear-gradient(160deg, var(--panel), var(--panel-2));
+    display:flex; align-items:center; justify-content:center;
+    position:relative; overflow:hidden;
+  }
+  .about-photo::before{content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 20%, rgba(79,193,176,.18), transparent 60%);}
+  .photo-initials{font-family:var(--disp); font-size:64px; font-weight:700; color:var(--text-faint); position:relative;}
+  .about-photo .add-photo-hint{position:absolute; bottom:16px; left:0; right:0; text-align:center; font-family:var(--mono); font-size:11px; color:var(--amber);}
+  .about-copy h3{font-size:22px; margin-bottom:16px;}
+  .about-copy p{color:var(--text-dim); font-size:15.5px; margin-bottom:16px;}
+  .about-copy strong{color:var(--text);}
+  .about-tags{display:flex; flex-wrap:wrap; gap:10px; margin-top:24px;}
+  .about-tag{font-family:var(--mono); font-size:12px; border:1px solid var(--line); border-radius:100px; padding:7px 14px; color:var(--text-dim);}
+  @media (max-width:820px){ .about-grid{grid-template-columns:1fr;} .about-photo{max-width:280px; margin:0 auto;} }
+
+  /* ---- skills ---- */
+  .skills-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  .skill-card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:22px 24px; transition:border-color .2s;}
+  .skill-card:hover{border-color:var(--teal);}
+  .skill-card h4{font-size:14.5px; font-family:var(--mono); text-transform:uppercase; letter-spacing:.04em; color:var(--amber); margin-bottom:14px;}
+  .skill-pills{display:flex; flex-wrap:wrap; gap:8px;}
+  .pill{font-size:13px; background:var(--panel-2); border:1px solid var(--line); border-radius:8px; padding:6px 12px; color:var(--text-dim);}
+  @media (max-width:820px){ .skills-grid{grid-template-columns:1fr;} }
+
+  /* ---- experience timeline ---- */
+  .timeline{position:relative; max-width:820px; margin:0 auto; padding-left:36px;}
+  .timeline::before{content:''; position:absolute; left:7px; top:6px; bottom:6px; width:2px; background:var(--line);}
+  .tl-item{position:relative; padding-bottom:48px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{content:''; position:absolute; left:-36px; top:4px; width:16px; height:16px; border-radius:50%; background:var(--bg); border:2px solid var(--teal);}
+  .tl-item.current::before{background:var(--teal); box-shadow:0 0 0 5px var(--teal-soft);}
+  .tl-card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:24px 26px;}
+  .tl-top{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:4px;}
+  .tl-role{font-family:var(--disp); font-size:18.5px; font-weight:600;}
+  .tl-badge{font-family:var(--mono); font-size:10.5px; color:var(--teal); background:var(--teal-soft); border-radius:100px; padding:3px 10px;}
+  .tl-org{color:var(--teal); font-size:14.5px; font-weight:600; margin-bottom:2px;}
+  .tl-dates{font-family:var(--mono); font-size:12px; color:var(--text-faint); margin-bottom:16px;}
+  .tl-list li{position:relative; padding-left:18px; font-size:14.5px; color:var(--text-dim); margin-bottom:8px;}
+  .tl-list li::before{content:'—'; position:absolute; left:0; color:var(--text-faint);}
+
+  /* ---- projects ---- */
+  .filter-row{display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:40px;}
+  .filter-btn{font-family:var(--mono); font-size:13px; padding:8px 18px; border-radius:100px; border:1px solid var(--line); color:var(--text-dim); cursor:pointer; background:transparent; transition:.2s;}
+  .filter-btn.active, .filter-btn:hover{border-color:var(--teal); color:var(--teal); background:var(--teal-soft);}
+  .proj-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:20px;}
+  .proj-card{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:26px; transition:transform .2s, border-color .2s;}
+  .proj-card:hover{transform:translateY(-4px); border-color:var(--teal);}
+  .proj-eyebrow{font-family:var(--mono); font-size:11px; color:var(--amber); margin-bottom:10px;}
+  .proj-name{font-size:18.5px; margin-bottom:10px;}
+  .proj-desc{font-size:14.5px; color:var(--text-dim); margin-bottom:18px; min-height:44px;}
+  .proj-tags{display:flex; flex-wrap:wrap; gap:7px; margin-bottom:14px;}
+  .tag{font-family:var(--mono); font-size:11px; color:var(--text-faint); border:1px solid var(--line); border-radius:6px; padding:3px 9px;}
+  .proj-status{font-family:var(--mono); font-size:10.5px; padding:4px 10px; border-radius:100px; display:inline-block;}
+  .status-live{color:var(--teal); background:var(--teal-soft);}
+  .status-internal{color:var(--amber); background:rgba(240,168,60,.13);}
+  .proj-note{margin-top:14px; padding-top:12px; border-top:1px dashed var(--line); font-family:var(--mono); font-size:11px; color:var(--amber);}
+
+  /* ---- contact ---- */
+  .contact-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:56px;}
+  .contact-info h3{font-size:22px; margin-bottom:14px;}
+  .contact-info p{color:var(--text-dim); font-size:15px; margin-bottom:28px;}
+  .contact-item{display:flex; align-items:center; gap:14px; margin-bottom:18px;}
+  .contact-item .ic{width:42px; height:42px; border-radius:10px; background:var(--panel); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0;}
+  .contact-item .label{font-family:var(--mono); font-size:11px; color:var(--text-faint); text-transform:uppercase;}
+  .contact-item .value{font-size:14.5px; color:var(--text);}
+  .contact-item a.value:hover{color:var(--teal);}
+
+  .form{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:32px;}
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;}
+  .field{display:flex; flex-direction:column; gap:6px;}
+  .field label{font-family:var(--mono); font-size:11.5px; color:var(--text-faint); text-transform:uppercase;}
+  .field input, .field textarea{
+    background:var(--panel-2); border:1px solid var(--line); border-radius:9px; padding:11px 14px;
+    color:var(--text); font-family:var(--body); font-size:14px;
+  }
+  .field input:focus, .field textarea:focus{outline:none; border-color:var(--teal);}
+  .field.full{grid-column:1 / -1;}
+  .form button{width:100%; margin-top:6px; justify-content:center;}
+  @media (max-width:820px){ .contact-grid{grid-template-columns:1fr;} .form-row{grid-template-columns:1fr;} }
+
+  footer{padding:36px 0; text-align:center; font-family:var(--mono); font-size:12px; color:var(--text-faint); border-top:1px solid var(--line);}
+
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-mark">HC</span> Hedi Chakchouk</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <a href="#" class="btn btn-ghost btn-sm">⚠️ Resume</a>
+      <a href="#contact" class="btn btn-primary btn-sm">Hire Me</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="available-badge"><i></i> Available for opportunities</span>
+    <h1>Mobile Developer building <span class="accent">Flutter &amp; iOS</span> experiences that ship.</h1>
+    <p class="lede">I'm Hedi Chakchouk, a mobile developer based in Sfax, Tunisia with 3+ years building cross-platform apps. From ERP tooling to the mobility apps people use every day — I craft clean, efficient Flutter codebases end to end.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#" class="btn btn-ghost">⚠️ Download Resume</a>
+      <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat"><div class="num">3+</div><div class="label">Years Exp.</div></div>
+      <div class="stat"><div class="num">2</div><div class="label">Companies</div></div>
+      <div class="stat"><div class="num">5+</div><div class="label">Apps Shipped</div></div>
+      <div class="stat"><div class="num">2</div><div class="label">Platforms</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">About Me</div>
+      <h2>Turning ideas into apps people actually use</h2>
+    </div>
+    <div class="about-grid reveal">
+      <div class="about-photo">
+        <span class="photo-initials">HC</span>
+        <span class="add-photo-hint">⚠️ add your photo here</span>
+      </div>
+      <div class="about-copy">
+        <h3>Mobile Developer based in Sfax, Tunisia</h3>
+        <p>With over <strong>3 years of experience in Flutter</strong> and a genuine passion for mobile app development, I've grown into a developer who specializes in building smooth, efficient, and visually engaging cross-platform applications for both iOS and Android.</p>
+        <p>Today, my focus goes beyond just writing clean Flutter code — I'm actively expanding my expertise toward <strong>AI-powered features</strong>, exploring how intelligent capabilities can make mobile apps more useful and engaging.</p>
+        <p>I hold an engineer's degree in Computer Engineering from the International Institute of Technology, and I believe great mobile apps sit at the intersection of technical skill and creative problem-solving — from UI design to backend integration.</p>
+        <div class="about-tags">
+          <span class="about-tag">Cross-Platform Dev</span>
+          <span class="about-tag">Flutter &amp; Dart</span>
+          <span class="about-tag">Firebase</span>
+          <span class="about-tag">App Store Deployment</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">Skills</div>
+      <h2>Tech Stack &amp; Expertise</h2>
+      <p>Technologies and tools I work with to build reliable, production-ready apps.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h4>Languages &amp; Frameworks</h4>
+        <div class="skill-pills">
+          <span class="pill">Flutter</span><span class="pill">Dart</span><span class="pill">Swift</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>State Management</h4>
+        <div class="skill-pills">
+          <span class="pill">GetX</span><span class="pill">Bloc / Cubit</span><span class="pill">Riverpod</span><span class="pill">Provider</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>Backend &amp; Cloud</h4>
+        <div class="skill-pills">
+          <span class="pill">Firebase</span><span class="pill">Firestore</span><span class="pill">FCM</span><span class="pill">MySQL</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>Architecture</h4>
+        <div class="skill-pills">
+          <span class="pill">Clean Architecture</span><span class="pill">MVVM</span><span class="pill">Repository Pattern</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>Tools &amp; DevOps</h4>
+        <div class="skill-pills">
+          <span class="pill">Git</span><span class="pill">Play Store</span><span class="pill">App Store</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>Languages</h4>
+        <div class="skill-pills">
+          <span class="pill">English (IELTS B2)</span><span class="pill">French</span><span class="pill">Arabic</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">Experience</div>
+      <h2>Professional Journey</h2>
+      <p>3+ years of building and shipping mobile products.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item current reveal">
+        <div class="tl-card">
+          <div class="tl-top"><span class="tl-role">Software Engineer</span><span class="tl-badge">current</span></div>
+          <div class="tl-org">Miral Development · Sfax, Tunisia · On-site</div>
+          <div class="tl-dates">Jul 2025 — Present · 1 yr 2 mos</div>
+          <ul class="tl-list">
+            <li>Contributing to the mobile engineering team behind Miral's mobility and delivery products.</li>
+            <li>Working across Flutter and native iOS to ship features for consumer-facing apps.</li>
+            <li>Collaborating with product and backend teams in a fast-moving, agile environment.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-card">
+          <div class="tl-top"><span class="tl-role">Mobile Application Developer</span></div>
+          <div class="tl-org">ASM — All Soft Multimedia · Sfax, Tunisia</div>
+          <div class="tl-dates">Oct 2022 — Jun 2025 · 2 yrs 9 mos</div>
+          <ul class="tl-list">
+            <li>Developed mobile application modules for ERP systems — CRM, HR, and Calendar Planning.</li>
+            <li>Designed and implemented a new UI/UX for a restaurant management app, improving usability and performance.</li>
+            <li>Managed backend-related tasks: version deployment, server updates, and app publishing.</li>
+            <li>Integrated Firebase Cloud Messaging for real-time notifications across platforms.</li>
+            <li>Built cross-platform features in Flutter, ensuring consistent performance on iOS and Android.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">Projects</div>
+      <h2>Portfolio &amp; Featured Work</h2>
+      <p>Mobility &amp; delivery apps at Miral Development, plus ERP work at ASM.</p>
+    </div>
+
+    <div class="filter-row">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="miral">Miral Development</button>
+      <button class="filter-btn" data-filter="asm">ASM</button>
+    </div>
+
+    <div class="proj-grid">
+      <div class="proj-card reveal" data-cat="miral">
+        <span class="proj-status status-live">Live</span>
+        <div class="proj-eyebrow" style="margin-top:12px;">Delivery Platform</div>
+        <div class="proj-name">Zigzag Delivery</div>
+        <p class="proj-desc">On-demand delivery platform connecting customers with couriers across Tunis.</p>
+        <div class="proj-tags"><span class="tag">Flutter</span><span class="tag">Firebase</span><span class="tag">iOS/Android</span></div>
+        <div class="proj-note">⚠️ Placeholder — add your real role &amp; contribution.</div>
+      </div>
+
+      <div class="proj-card reveal" data-cat="miral">
+        <span class="proj-status status-live">Live</span>
+        <div class="proj-eyebrow" style="margin-top:12px;">Ride-Hailing</div>
+        <div class="proj-name">MiralDrive</div>
+        <p class="proj-desc">Ride-hailing platform connecting riders with drivers — fast, reliable, secure trips.</p>
+        <div class="proj-tags"><span class="tag">Flutter</span><span class="tag">Maps</span><span class="tag">Real-time</span></div>
+        <div class="proj-note">⚠️ Placeholder — add your real role &amp; contribution.</div>
+      </div>
+
+      <div class="proj-card reveal" data-cat="miral">
+        <span class="proj-status status-live">Live</span>
+        <div class="proj-eyebrow" style="margin-top:12px;">Driver App</div>
+        <div class="proj-name">MiralDriver</div>
+        <p class="proj-desc">Companion driver-side app for the MiralDrive network — trip requests, navigation, earnings.</p>
+        <div class="proj-tags"><span class="tag">Flutter</span><span class="tag">Background Location</span></div>
+        <div class="proj-note">⚠️ Placeholder — add your real role &amp; contribution.</div>
+      </div>
+
+      <div class="proj-card reveal" data-cat="asm">
+        <span class="proj-status status-internal">ASM</span>
+        <div class="proj-eyebrow" style="margin-top:12px;">UI/UX Redesign</div>
+        <div class="proj-name">Restaurant Management App</div>
+        <p class="proj-desc">Redesigned UI/UX end-to-end, improving usability and performance.</p>
+        <div class="proj-tags"><span class="tag">Flutter</span><span class="tag">UI/UX</span></div>
+      </div>
+
+      <div class="proj-card reveal" data-cat="asm">
+        <span class="proj-status status-internal">ASM</span>
+        <div class="proj-eyebrow" style="margin-top:12px;">ERP Modules</div>
+        <div class="proj-name">ERP Mobile Suite</div>
+        <p class="proj-desc">CRM, HR, and Calendar Planning modules built as mobile companions to a desktop ERP system.</p>
+        <div class="proj-tags"><span class="tag">Flutter</span><span class="tag">MySQL</span><span class="tag">FCM</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">Contact</div>
+      <h2>Let's Work Together</h2>
+      <p>Have a project in mind? Let's build something great.</p>
+    </div>
+
+    <div class="contact-grid reveal">
+      <div class="contact-info">
+        <h3>Get In Touch</h3>
+        <p>I'm always open to discussing new opportunities, freelance projects, or a friendly chat about mobile development.</p>
+
+        <div class="contact-item">
+          <span class="ic">✉️</span>
+          <div><div class="label">Email</div><a class="value" href="mailto:your.email@example.com">⚠️ add your email</a></div>
+        </div>
+        <div class="contact-item">
+          <span class="ic">📍</span>
+          <div><div class="label">Location</div><span class="value">Sfax, Tunisia</span></div>
+        </div>
+        <div class="contact-item">
+          <span class="ic">💼</span>
+          <div><div class="label">LinkedIn</div><a class="value" href="https://www.linkedin.com/in/hedi-chakchouk/" target="_blank" rel="noopener">linkedin.com/in/hedi-chakchouk</a></div>
+        </div>
+        <div class="contact-item">
+          <span class="ic">🐙</span>
+          <div><div class="label">GitHub</div><a class="value" href="https://github.com/hedichakchouk" target="_blank" rel="noopener">github.com/hedichakchouk</a></div>
+        </div>
+      </div>
+
+      <form class="form" onsubmit="event.preventDefault(); alert('⚠️ Hook this up to Formspree / EmailJS before going live.');">
+        <div class="form-row">
+          <div class="field"><label>Your Name</label><input type="text" required></div>
+          <div class="field"><label>Email Address</label><input type="email" required></div>
+        </div>
+        <div class="field full" style="margin-bottom:14px;"><label>Subject</label><input type="text"></div>
+        <div class="field full" style="margin-bottom:14px;"><label>Message</label><textarea rows="5" required></textarea></div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Designed &amp; built by Hedi Chakchouk · © 2026 · Deployed on GitHub Pages
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => io.observe(el));
+
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projCards = document.querySelectorAll('.proj-card');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      projCards.forEach(card => {
+        card.style.display = (f === 'all' || card.dataset.cat === f) ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
