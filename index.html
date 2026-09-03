@@ -92,7 +92,8 @@
     display:flex; align-items:center; justify-content:center;
     position:relative; overflow:hidden;
   }
-  .about-photo::before{content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 20%, rgba(79,193,176,.18), transparent 60%);}
+  .about-photo::before{content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 20%, rgba(79,193,176,.18), transparent 60%); z-index:1; pointer-events:none;}
+  .about-photo img{width:100%; height:100%; object-fit:cover; position:relative;}
   .photo-initials{font-family:var(--disp); font-size:64px; font-weight:700; color:var(--text-faint); position:relative;}
   .about-photo .add-photo-hint{position:absolute; bottom:16px; left:0; right:0; text-align:center; font-family:var(--mono); font-size:11px; color:var(--amber);}
   .about-copy h3{font-size:22px; margin-bottom:16px;}
@@ -220,7 +221,7 @@
     </div>
     <div class="about-grid reveal">
       <div class="about-photo">
-        <span class="photo-initials">HC</span>
+        <img src="1759680514894.jpeg" alt="Hedi Chakchouk">
       </div>
       <div class="about-copy">
         <h3>Mobile Developer based in Sfax, Tunisia</h3>
@@ -353,7 +354,6 @@
         <div class="proj-name">Zigzag Delivery</div>
         <p class="proj-desc">On-demand delivery platform connecting customers with couriers across Tunis.</p>
         <div class="proj-tags"><span class="tag">Flutter</span><span class="tag">Firebase</span><span class="tag">iOS/Android</span></div>
-        <div class="proj-note">⚠️ Placeholder — add your real role &amp; contribution.</div>
       </div>
 
       <div class="proj-card reveal" data-cat="miral">
@@ -362,7 +362,6 @@
         <div class="proj-name">MiralDrive</div>
         <p class="proj-desc">Ride-hailing platform connecting riders with drivers — fast, reliable, secure trips.</p>
         <div class="proj-tags"><span class="tag">Flutter</span><span class="tag">Maps</span><span class="tag">Real-time</span></div>
-        <div class="proj-note">⚠️ Placeholder — add your real role &amp; contribution.</div>
       </div>
 
       <div class="proj-card reveal" data-cat="miral">
@@ -371,7 +370,6 @@
         <div class="proj-name">MiralDriver</div>
         <p class="proj-desc">Companion driver-side app for the MiralDrive network — trip requests, navigation, earnings.</p>
         <div class="proj-tags"><span class="tag">Flutter</span><span class="tag">Background Location</span></div>
-        <div class="proj-note">⚠️ Placeholder — add your real role &amp; contribution.</div>
       </div>
 
       <div class="proj-card reveal" data-cat="asm">
@@ -426,13 +424,17 @@
         </div>
       </div>
 
-      <form class="form" onsubmit="event.preventDefault(); alert('⚠️ Hook this up to Formspree / EmailJS before going live.');">
+      <form class="form" action="https://formsubmit.co/hedichakchoukk@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New message from hedichakchouk.github.io">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://hedichakchouk.github.io/?sent=true#contact">
         <div class="form-row">
-          <div class="field"><label>Your Name</label><input type="text" required></div>
-          <div class="field"><label>Email Address</label><input type="email" required></div>
+          <div class="field"><label>Your Name</label><input type="text" name="name" required></div>
+          <div class="field"><label>Email Address</label><input type="email" name="email" required></div>
         </div>
-        <div class="field full" style="margin-bottom:14px;"><label>Subject</label><input type="text"></div>
-        <div class="field full" style="margin-bottom:14px;"><label>Message</label><textarea rows="5" required></textarea></div>
+        <div class="field full" style="margin-bottom:14px;"><label>Subject</label><input type="text" name="subject"></div>
+        <div class="field full" style="margin-bottom:14px;"><label>Message</label><textarea rows="5" name="message" required></textarea></div>
         <button type="submit" class="btn btn-primary">Send Message</button>
       </form>
     </div>
@@ -444,6 +446,12 @@
 </footer>
 
 <script>
+  if (new URLSearchParams(location.search).get('sent') === 'true') {
+    const f = document.querySelector('.form');
+    if (f) f.insertAdjacentHTML('beforebegin', '<div style="background:var(--teal-soft); border:1px solid rgba(79,193,176,.3); color:var(--teal); border-radius:12px; padding:16px 20px; margin-bottom:20px; font-size:14.5px;">✓ Thanks — your message was sent. I\'ll get back to you soon.</div>');
+    history.replaceState(null, '', location.pathname + location.hash);
+  }
+
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
