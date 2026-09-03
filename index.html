@@ -136,6 +136,7 @@
   .proj-card{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:26px; transition:transform .2s, border-color .2s;}
   .proj-card:hover{transform:translateY(-4px); border-color:var(--teal);}
   .proj-eyebrow{font-family:var(--mono); font-size:11px; color:var(--amber); margin-bottom:10px;}
+  .proj-logo{width:44px; height:44px; border-radius:12px; object-fit:cover; margin-bottom:14px; border:1px solid var(--line); background:#fff;}
   .proj-name{font-size:18.5px; margin-bottom:10px;}
   .proj-desc{font-size:14.5px; color:var(--text-dim); margin-bottom:18px; min-height:44px;}
   .proj-tags{display:flex; flex-wrap:wrap; gap:7px; margin-bottom:14px;}
@@ -350,7 +351,8 @@
     <div class="proj-grid">
       <div class="proj-card reveal" data-cat="miral">
         <span class="proj-status status-live">Live</span>
-        <div class="proj-eyebrow" style="margin-top:12px;">Delivery Platform</div>
+        <img class="proj-logo" src="zigzag-logo.png" alt="Zigzag Delivery logo">
+        <div class="proj-eyebrow">Delivery Platform</div>
         <div class="proj-name">Zigzag Delivery</div>
         <p class="proj-desc">On-demand delivery platform connecting customers with couriers across Tunis.</p>
         <div class="proj-tags"><span class="tag">Flutter</span><span class="tag">Firebase</span><span class="tag">iOS/Android</span></div>
@@ -358,7 +360,8 @@
 
       <div class="proj-card reveal" data-cat="miral">
         <span class="proj-status status-live">Live</span>
-        <div class="proj-eyebrow" style="margin-top:12px;">Ride-Hailing</div>
+        <img class="proj-logo" src="miraldrive-logo.png" alt="MiralDrive logo">
+        <div class="proj-eyebrow">Ride-Hailing</div>
         <div class="proj-name">MiralDrive</div>
         <p class="proj-desc">Ride-hailing platform connecting riders with drivers — fast, reliable, secure trips.</p>
         <div class="proj-tags"><span class="tag">Flutter</span><span class="tag">Maps</span><span class="tag">Real-time</span></div>
